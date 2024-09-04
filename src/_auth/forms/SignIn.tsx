@@ -18,10 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { SigninValidation } from "@/lib/validation";
 import { useUserContext } from "@/context/AuthContext";
 
-import {
-  useCreateUserAccount,
-  useSignInAccount,
-} from "@/lib/react-query/queriesAndMutations";
+import { useSignInAccount } from "@/lib/react-query/queriesAndMutations";
 const SignIn = () => {
   const { toast } = useToast();
   const navigate = useNavigate();

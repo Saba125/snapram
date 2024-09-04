@@ -15,24 +15,12 @@ import { Textarea } from "../ui/textarea";
 import FileUploader from "../shared/FileUploader";
 import { PostValidation } from "@/lib/validation";
 import { Models } from "appwrite";
-import {
-  useCreatePost,
-  useUpdatePost,
-} from "@/lib/react-query/queriesAndMutations";
-import { useUserContext } from "@/context/AuthContext";
-import { toast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+
 type PostFormProps = {
   post?: Models.Document;
   action: "create" | "update";
 };
-const PostForm = ({ post, action }: PostFormProps) => {
-  const { user } = useUserContext();
-  const navigate = useNavigate();
-  const { mutateAsync: createPost, isPending: isLoadingCreate } =
-    useCreatePost();
-  const { mutateAsync: updatePost, isPending: isLoadingUpdate } =
-    useUpdatePost();
+const PostForm = ({ post }: PostFormProps) => {
   const form = useForm<z.infer<typeof PostValidation>>({
     resolver: zodResolver(PostValidation),
     defaultValues: {
@@ -44,22 +32,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
   });
 
   async function onSubmit(values: z.infer<typeof PostValidation>) {
-    if (post && action === "update") {
-      const updatedPost = await updatePost({
-        ...values,
-        postId: post.$id,
-        imageId: post.imageId,
-        imageUrl: post.imageUrl,
-      });
-      if (!updatePost) {
-        toast({ title: "Please try again later" });
-      }
-      return navigate(`posts/${post.$id}`);
-    }
-    const newPost = await createPost({
-      ...values,
-      userId: user.id,
-    });
+    console.log(values);
   }
   return (
     <Form {...form}>

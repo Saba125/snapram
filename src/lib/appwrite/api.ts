@@ -395,12 +395,12 @@ export async function savePost(userId: string, postId: string) {
 // ============================== SAVE POST
 export async function getPosts() {
   try {
-    const updatedPost = await databases.listDocuments(
+    const response = await databases.listDocuments(
       appwriteConfig.databaseId,
-      appwriteConfig.databaseId
+      appwriteConfig.postCollectionId
     );
 
-    return updatedPost;
+    return response.documents;
   } catch (error) {
     console.log(error);
   }

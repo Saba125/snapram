@@ -1,9 +1,4 @@
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  useInfiniteQuery,
-} from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { QUERY_KEYS } from "@/lib/react-query/queryKeys";
 import {
@@ -21,7 +16,6 @@ import {
   getUserById,
   updateUser,
   getRecentPosts,
-  getInfinitePosts,
   searchPosts,
   savePost,
   deleteSavedPost,

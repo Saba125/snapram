@@ -3,9 +3,7 @@ import Loader from "@/components/shared/Loader";
 import { Input } from "@/components/ui/input";
 import { useGetPosts } from "@/lib/react-query/queriesAndMutations";
 import { useState } from "react";
-import { useInView } from "react-intersection-observer";
 const Explore = () => {
-  const { inView } = useInView();
   const [searchValue, setSearchValue] = useState("");
   const { data: posts } = useGetPosts();
   if (!posts) {
@@ -52,7 +50,7 @@ const Explore = () => {
       </div>
       <div className="flex flex-wrap gap-9 w-full max-w-5xl">
         {posts.map((post) => (
-          <GridList posts={post} key={post} />
+          <GridList posts={post} />
         ))}
       </div>
     </div>
