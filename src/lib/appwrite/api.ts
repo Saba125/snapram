@@ -1,4 +1,4 @@
-import { ID, ImageGravity, Query } from "appwrite";
+import { ID, Query } from "appwrite";
 
 import { appwriteConfig, account, databases, storage, avatars } from "./config";
 import { IUpdatePost, INewPost, INewUser, IUpdateUser } from "@/types";
@@ -187,9 +187,7 @@ export function getFilePreview(fileId: string) {
       appwriteConfig.storageId,
       fileId,
       2000,
-      2000,
-      "top",
-      100
+      2000
     );
 
     if (!fileUrl) throw Error;
@@ -388,6 +386,19 @@ export async function savePost(userId: string, postId: string) {
     );
 
     if (!updatedPost) throw Error;
+
+    return updatedPost;
+  } catch (error) {
+    console.log(error);
+  }
+}
+// ============================== SAVE POST
+export async function getPosts() {
+  try {
+    const updatedPost = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.databaseId
+    );
 
     return updatedPost;
   } catch (error) {

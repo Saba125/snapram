@@ -1,12 +1,12 @@
 import { useUserContext } from "@/context/AuthContext";
 import {
-  useDeleteSavePost,
+  useDeleteSavedPost,
   useGetCurrentUser,
   useLikePost,
   useSavePost,
 } from "@/lib/react-query/queriesAndMutations";
 import { checkIsLiked } from "@/lib/utils";
-import { ImageGravity, Models } from "appwrite";
+import { Models } from "appwrite";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 
@@ -29,7 +29,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   const { mutate: likePost } = useLikePost();
   const { mutate: savePost, isPending: isSavingPost } = useSavePost();
   const { mutate: deleteSavePost, isPending: isDeletingSaved } =
-    useDeleteSavePost();
+    useDeleteSavedPost();
   const handleLikePost = (e: React.MouseEvent) => {
     e.stopPropagation();
     let newLikes = [...likes];
